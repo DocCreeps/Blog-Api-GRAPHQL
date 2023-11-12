@@ -2,6 +2,7 @@
 // tests/Unit/RoleTest.php
 
 use App\Models\Role;
+use App\Models\User;
 use Database\Factories\RoleFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -43,6 +44,21 @@ it('can retrieve all roles', function () {
     foreach ($roles as $role) {
         expect($retrievedRoles->pluck('name'))->toContain($role->name);
     }
+});
+
+it('can retrieve user with role', function () {
+    // Crée un rôle
+    $role = Role::factory()->create();
+
+    // Crée un utilisateur avec le rôle associé
+    $user = User::factory()->create(['role_id' => $role->id]);
+
+    // Récupère l'utilisateur avec le rôle
+    $retrievedUser = User::with('role')->find($user->id);
+
+    // Assertions
+    expect($retrievedUser->role)->toBeInstanceOf(Role::class)
+        ->and($retrievedUser->role->name)->toEqual($role->name);
 });
 
 // Ajoutez d'autres tests au besoin
