@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('like_comments', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('comment_id')->constrained('comments')->cascadeOnDelete();
+            $table->boolean('is_like')->default(true);
             $table->timestamps();
         });
     }
