@@ -28,4 +28,5 @@ type Query {
 
     usersByRole(roleName: String!): [User!]!
     usersRegisteredBefore(date: String!): [User!]!
+    usersRegisteredAfter(date: String!): [User!]!
 }

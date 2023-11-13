@@ -7,7 +7,7 @@ use Carbon\Carbon;
 use GraphQL\Type\Definition\ResolveInfo;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 
-class UsersRegisteredBefore
+class UsersRegisteredAfter
 {
     public function __invoke($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
     {
@@ -17,6 +17,6 @@ class UsersRegisteredBefore
         $formattedDate = Carbon::parse($date)->format('Y-m-d');
 
         // Récupération des utilisateurs inscrits avant la date spécifiée
-        return User::where('created_at', '<=', $formattedDate)->get();
+        return User::where('created_at', '>=', $formattedDate)->get();
     }
 }
