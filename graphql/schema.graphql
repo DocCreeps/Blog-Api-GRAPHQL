@@ -25,8 +25,6 @@ type Query {
     roles: [Role!]! @all
     role(id: ID! @eq): Role @find
 
-
-#Query for user
     usersByRole(roleName: String!): [User!]!
     usersRegisteredBefore(date: String!): [User!]!
     usersRegisteredAfter(date: String!): [User!]!
@@ -38,4 +36,5 @@ type Mutation{
     updateRole(id: ID!, name: String!): Role @update
 
     #CRUD user
+
 }

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->text('biography')->nullable();
             $table->foreignId('role_id')->constrained('roles')->cascadeOnDelete();
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
