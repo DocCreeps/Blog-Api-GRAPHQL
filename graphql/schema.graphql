@@ -34,6 +34,7 @@ type Mutation{
     #CRUD role
     createRole(name: String!): Role @create
     updateRole(id: ID!, name: String!): Role @update
+    deleteRole(id: ID! @eq): Role @delete
 
     #CRUD user
 
