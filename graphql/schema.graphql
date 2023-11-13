@@ -24,5 +24,8 @@ type Query {
 
     roles: [Role!]! @all
     role(id: ID! @eq): Role @find
+
+
     usersByRole(roleName: String!): [User!]!
+    usersRegisteredBefore(date: String!): [User!]!
 }
