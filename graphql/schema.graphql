@@ -26,7 +26,16 @@ type Query {
     role(id: ID! @eq): Role @find
 
 
+#Query for user
     usersByRole(roleName: String!): [User!]!
     usersRegisteredBefore(date: String!): [User!]!
     usersRegisteredAfter(date: String!): [User!]!
+}
+
+type Mutation{
+    #CRUD role
+    createRole(name: String!): Role @create
+
+
+    #CRUD user
 }
