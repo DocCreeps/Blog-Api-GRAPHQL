@@ -8,16 +8,16 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-uses(TestCase::class, RefreshDatabase::class, WithFaker::class);
+uses(TestCase::class, WithFaker::class, RefreshDatabase::class);
 
-it('can create a role', function () {
+test('can create a role', function () {
     $role = Role::factory()->create();
 
     expect($role->name)->not->toBeNull()
         ->and($role->id)->not->toBeNull();
 });
 
-it('can update a role', function () {
+test('can update a role', function () {
     $role = Role::factory()->create();
 
     $newName = $this->faker->sentence(2);
@@ -26,7 +26,7 @@ it('can update a role', function () {
     expect($role->name)->toEqual($newName);
 });
 
-it('can delete a role', function () {
+test('can delete a role', function () {
     $role = Role::factory()->create();
 
     $role->delete();
@@ -34,7 +34,7 @@ it('can delete a role', function () {
     expect(Role::find($role->id))->toBeNull();
 });
 
-it('can retrieve all roles', function () {
+test('can retrieve all roles', function () {
     $roles = Role::factory()->count(3)->create();
 
     $retrievedRoles = Role::all();
@@ -46,7 +46,7 @@ it('can retrieve all roles', function () {
     }
 });
 
-it('can retrieve user with role', function () {
+test('can retrieve user with role', function () {
     // Crée un rôle
     $role = Role::factory()->create();
 

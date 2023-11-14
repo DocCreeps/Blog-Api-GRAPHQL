@@ -5,15 +5,15 @@ type User {
     avatar: String
     profession: String
     biography: String
-    role: Role!
-    created_at: String!
-    updated_at: String!
+    role: Role
+    created_at: String
+    updated_at: String
 }
 
 type Role {
     id: ID!
     name: String!
-    users: [User!]! @hasMany
+    users: [User!] @hasMany
 }
 
 
@@ -38,4 +38,7 @@ type Mutation{
 
     #CRUD user
 
+    createUser(name: String!, email: String!, password: String!, role_id: ID!): User @create
+    updateUser(id: ID!, name: String, email: String, password: String, role_id: ID, avatar: String, profession: String, biography: String): User @update
+    deleteUser(id: ID! @eq): User @delete
 }
